@@ -4,23 +4,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudzetDomowyProjekt
+namespace BudzetDomowyProjekt 
 {
-    public class Budzet
+    public class Budzet 
     {
         public int Id { get; set; }
         public decimal Kwota { get; set; }
         public string Wlasciciel { get; set; }
-        public string Kategoria { get; set; }
+        public bool JestAktywny { get; set; } = true; 
 
-        public Budzet(int id, decimal kwota, string kategoria, string wlasciciel)
+        public Budzet(int id, decimal kwota, string wlasciciel)
         {
             Id = id;
             Kwota = kwota;
-            Kategoria = kategoria;
             Wlasciciel = wlasciciel;
-
         }
 
+        public void DodajDoBudzetu(decimal kwota)
+        {
+            if (JestAktywny) Kwota += kwota;
+        }
+
+        public void OdejmijOdBudzetu(decimal kwota)
+        {
+            if (JestAktywny) Kwota -= kwota;
+        }
+
+        
+        public string PobierzInformacjeOBudzecie()
+        {
+            return $"ID: {Id}, Kwota: {Kwota}, Właściciel: {Wlasciciel}, Aktywny: {JestAktywny}";
+        }
+
+        
+        public void DeaktywujBudzet()
+        {
+            JestAktywny = false;
+        }
+
+        
+        public void ZmienWlasciciela(string nowyWlasciciel)
+        {
+            if (JestAktywny) Wlasciciel = nowyWlasciciel;
+        }
     }
+
 }

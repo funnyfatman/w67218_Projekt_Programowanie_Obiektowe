@@ -1,3 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
 using BudzetDomowyProjekt;
+var budzetManager =IBudzetManager();
 
+Budzet bd = new Budzet(budzetManager);
+
+bd.WykonajAkcje();
