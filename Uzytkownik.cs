@@ -10,16 +10,20 @@ namespace BudzetDomowyProjekt
     {
         public int ID { get; set; }
         public string Nazwa { get; set; }
-        private static List<Uzytkownik> uzytkownicy = new List<Uzytkownik>();
+        public List<Uzytkownik> uzytkownicy = new List<Uzytkownik>();
 
-        
-        public  void DodajUzytkownika(string nazwa)
+
+        public void DodajUzytkownika(string nazwa)
         {
+            if (string.IsNullOrWhiteSpace(nazwa))
+            {
+                throw new ArgumentException("Nazwa użytkownika nie może być pusta.");
+            }
             Uzytkownik nowyUzytkownik = new Uzytkownik { ID = uzytkownicy.Count + 1, Nazwa = nazwa };
             uzytkownicy.Add(nowyUzytkownik);
         }
 
-        
+
         public  Uzytkownik PobierzUzytkownika(int id)
         {
             return uzytkownicy.Find(u => u.ID == id);

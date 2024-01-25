@@ -11,7 +11,7 @@ namespace BudzetDomowyProjekt
         public int ID { get; set; }
         public double Kwota { get; set; }
         public DateTime Data { get; set; }
-        private static List<Transakcja> transakcje = new List<Transakcja>();
+        public List<Transakcja> transakcje = new List<Transakcja>();
 
 
         public  void DodajTransakcje(double kwota, DateTime data)
@@ -38,10 +38,7 @@ namespace BudzetDomowyProjekt
         }
 
 
-        public static void UsunTransakcje(int id)
-        {
-            transakcje.RemoveAll(t => t.ID == id);
-        }
+        
 
     }
 }

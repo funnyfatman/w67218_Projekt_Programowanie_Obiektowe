@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudzetDomowyProjekt;
+namespace BudzetDomowyProjekt {
+    Uzytkownik u1 = new Uzytkownik();
+}
 
-Uzytkownik u1 = new Uzytkownik();
+ 

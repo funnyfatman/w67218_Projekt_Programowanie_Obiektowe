@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace BudzetDomowyProjekt
 {
-    public class Budzet
+    public class Budzet: IBudzet
     {
         public int ID { get; set; }
         public double DostepneSrodki { get; set; }
-        private static List<Budzet> budzety = new List<Budzet>();
+        public List<Budzet> budzety = new List<Budzet>();
 
 
         public  void DodajBudzet(double dostepneSrodki)
         {
+            if (dostepneSrodki < 0)
+            {
+                throw new ArgumentException("Dostepne srodki muszą być wartością dodatnią.");
+            }
             Budzet nowyBudzet = new Budzet { ID = budzety.Count + 1, DostepneSrodki = dostepneSrodki };
             budzety.Add(nowyBudzet);
         }
@@ -22,7 +26,12 @@ namespace BudzetDomowyProjekt
 
         public  Budzet PobierzBudzet(int id)
         {
-            return budzety.Find(b => b.ID == id);
+            var budzet = budzety.FirstOrDefault(b => b.ID == id);
+            if (budzet == null)
+            {
+                throw new KeyNotFoundException("Budzet o podanym ID nie istnieje.");
+            }
+            return budzet;
         }
 
 
@@ -36,7 +45,7 @@ namespace BudzetDomowyProjekt
         }
 
 
-        public static void UsunBudzet(int id)
+        public  void UsunBudzet(int id)
         {
             budzety.RemoveAll(b => b.ID == id);
         }
