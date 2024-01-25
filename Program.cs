@@ -1,7 +1,10 @@
-﻿
-using BudzetDomowyProjekt;
-var budzetManager =IBudzetManager();
+﻿using BudzetDomowyProjekt;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-Budzet bd = new Budzet(budzetManager);
+namespace BudzetDomowyProjekt;
 
-bd.WykonajAkcje();
+Uzytkownik u1 = new Uzytkownik();

@@ -4,49 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudzetDomowyProjekt 
+namespace BudzetDomowyProjekt
 {
-    public class Budzet 
+    public class Budzet
     {
-        public int Id { get; set; }
-        public decimal Kwota { get; set; }
-        public string Wlasciciel { get; set; }
-        public bool JestAktywny { get; set; } = true; 
+        public int ID { get; set; }
+        public double DostepneSrodki { get; set; }
+        private static List<Budzet> budzety = new List<Budzet>();
 
-        public Budzet(int id, decimal kwota, string wlasciciel)
+
+        public  void DodajBudzet(double dostepneSrodki)
         {
-            Id = id;
-            Kwota = kwota;
-            Wlasciciel = wlasciciel;
+            Budzet nowyBudzet = new Budzet { ID = budzety.Count + 1, DostepneSrodki = dostepneSrodki };
+            budzety.Add(nowyBudzet);
         }
 
-        public void DodajDoBudzetu(decimal kwota)
+
+        public  Budzet PobierzBudzet(int id)
         {
-            if (JestAktywny) Kwota += kwota;
+            return budzety.Find(b => b.ID == id);
         }
 
-        public void OdejmijOdBudzetu(decimal kwota)
+
+        public  void AktualizujBudzet(int id, double noweDostepneSrodki)
         {
-            if (JestAktywny) Kwota -= kwota;
+            var budzet = PobierzBudzet(id);
+            if (budzet != null)
+            {
+                budzet.DostepneSrodki = noweDostepneSrodki;
+            }
         }
 
-        
-        public string PobierzInformacjeOBudzecie()
-        {
-            return $"ID: {Id}, Kwota: {Kwota}, Właściciel: {Wlasciciel}, Aktywny: {JestAktywny}";
-        }
 
-        
-        public void DeaktywujBudzet()
+        public static void UsunBudzet(int id)
         {
-            JestAktywny = false;
-        }
-
-        
-        public void ZmienWlasciciela(string nowyWlasciciel)
-        {
-            if (JestAktywny) Wlasciciel = nowyWlasciciel;
+            budzety.RemoveAll(b => b.ID == id);
         }
     }
-
 }
