@@ -13,6 +13,6 @@ namespace BudzetDomowyProjekt
         public decimal Amount { get; set; }
         public DateTime TransactionDate { get; set; }
         public ExpenseCategory Category { get; set; }
-        
+        public string PayMethod { get; set; }
     }
 }

@@ -51,15 +51,37 @@ namespace BudzetDomowyProjekt
                     case "4":
                         Console.Write("Opis transakcji: ");
                         string transactionDescription = Console.ReadLine();
-
+                        string payMethod="";
                         // Wybieramy dodatkową metodę płatności
+                        try
+                        {
+                            Console.WriteLine("Wybierz metodę płatności:");
+                            Console.WriteLine("1. Gotówka");
+                            Console.WriteLine("2. Karta");
+                            Console.Write("Wybierz opcję: ");
+                            payMethod = Console.ReadLine();
 
-                        // Dodać walidacje
-                        Console.WriteLine("Wybierz metodę płatności:");
-                        Console.WriteLine("1. Gotówka");
-                        Console.WriteLine("2. Karta");
-                        Console.Write("Wybierz opcję: ");
-                        string payMethod = Console.ReadLine();
+                            // Walidacja danych
+                            if (payMethod == "1" || payMethod == "2")
+                            {
+                                Console.WriteLine( "OK");
+                            }
+                            else
+                            {
+                                throw new Exception("Wprowadzona wartość to nie jest ani karta ani gotówka."); 
+                            }
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Wprowadzona wartość nie jest liczbą całkowitą.");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Błąd: " + ex.Message);
+                        }
+                        // Dodać walidacje                       
+                        
+                       
 
                         Console.Write("Kwota: ");
                         if (decimal.TryParse(Console.ReadLine(), out decimal transactionAmount))
