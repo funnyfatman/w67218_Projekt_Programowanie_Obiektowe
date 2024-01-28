@@ -2,13 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.SqlClient;
+using System.Data;
 namespace BudzetDomowyProjekt
 {
     class Program
     {
         static void Main(string[] args)
         {
-            BudgetApp budgetApp = new BudgetApp();
+            
+
+                BudgetApp budgetApp = new BudgetApp(1);
             while (true)
             {
                 Console.Clear();
